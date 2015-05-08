@@ -58,7 +58,8 @@ Algorithm:
 
 """
 
-
+#Set up
+#Todo, move this above the comments
 curMedian = 0
 leftHeap = map(ReverseCompare, [])
 rightHeap = []
@@ -76,19 +77,53 @@ def runningMed(n):
 		return curMedian
 
 	#the second +... time
-	#TODO: How to push it on there:
-	if (len(leftHeap) == len(rightHeap)):
+	# print "debug"
+	# print rightHeap
+	# print leftHeap
+	# heapq.heappush(leftHeap, 3)
+	# heapq.heappush(rightHeap, 3)
+	# print rightHeap
+
+	print "length of heaps"
+	print len(rightHeap)
+	print len(leftHeap)
+
+	if (len(rightHeap) > len(leftHeap) + 2):
+		print "Debug long right heap"
+
+		if(n >= curMedian):
+			heapq.heappush(leftHeap, curMedian)
+			curMedian = heapq.heappop(rightHeap)
+			heappop.heappush(rightHeap, n)
+		else:
+			heapq.heappush(leftHeap, n)
+
+	elif (len(leftHeap) > len(rightHeap) + 2):
+		print "Debug long"
+		if(n <= curMedian):
+			heapq.heappush(rightHeap, curMedian)
+			curMedian = heapq.heappop(leftHeap)
+			heappop.heappush(leftHeap, n)
+		else:
+			heapq.heappush(rightHeap,n)
+
+	else:
+		print "Debug curMedian"
+		print n
+		print curMedian
 		if (n > curMedian):
 			heapq.heappush(rightHeap, n)
+		else:
+			heapq.heappush(leftHeap,n)
 
-	#TODO: How to return the median:
+	#TReturn the median:
 	#This logic is more suited for added
 	if (len(leftHeap) == len(rightHeap)):
 		return curMedian
 	elif (len(leftHeap) > len(rightHeap)):
-		return heapq.heappop(leftHeap)
+		return (heapq.heappop(leftHeap) + curMedian)/2
 	else:
-		return heapq.heappop(rightHeap)
+		return (heapq.heappop(rightHeap) + curMedian)/2
 	# the real one be like, if eqal length return med
 	#else return average of media and the longer one
 
