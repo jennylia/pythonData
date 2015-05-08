@@ -94,7 +94,8 @@ def runningMed(n):
 		if(n >= curMedian):
 			heapq.heappush(leftHeap, curMedian)
 			curMedian = heapq.heappop(rightHeap)
-			heappop.heappush(rightHeap, n)
+            #curMedian = rightHeap[0]
+			heapq.heappush(rightHeap, n)
 		else:
 			heapq.heappush(leftHeap, n)
 
@@ -103,7 +104,8 @@ def runningMed(n):
 		if(n <= curMedian):
 			heapq.heappush(rightHeap, curMedian)
 			curMedian = heapq.heappop(leftHeap)
-			heappop.heappush(leftHeap, n)
+            #curMedian = left[0]
+			heapq.heappush(leftHeap, n)
 		else:
 			heapq.heappush(rightHeap,n)
 
@@ -121,9 +123,11 @@ def runningMed(n):
 	if (len(leftHeap) == len(rightHeap)):
 		return curMedian
 	elif (len(leftHeap) > len(rightHeap)):
-		return (heapq.heappop(leftHeap) + curMedian)/2
+		#return (heapq.heappop(leftHeap) + curMedian)/2
+		return ((leftHeap[0] + curMedian)/2)
 	else:
-		return (heapq.heappop(rightHeap) + curMedian)/2
+		return ((rightHeap[0] + curMedian)/2)
+		#return (heapq.heappop(rightHeap) + curMedian)/2
 	# the real one be like, if eqal length return med
 	#else return average of media and the longer one
 
