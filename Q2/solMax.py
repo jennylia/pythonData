@@ -98,8 +98,7 @@ def runningMed(n):
 			curMedian = heapq.heappop(rightHeap)
 			heapq.heappush(rightHeap, n)
 		else:
-			heapq._siftup_max(leftHeap, 0)
-
+			heapq.heappush(leftHeap,-n)
 	elif (len(leftHeap) > len(rightHeap)):
 		print "===LEFT LONGER==="
 		print "n is: " + str(n)
@@ -174,7 +173,7 @@ if __name__ == "__main__":
 	outputFile = open('output.txt', 'w')
 
 	for line in inputFile:
-		num = int(line.rstrip('\n'))
+		num = float(line.rstrip('\n'))
 		med = runningMed(num)
 		outputFile.write(str(med) + '\n')
 
