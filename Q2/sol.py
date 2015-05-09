@@ -125,10 +125,17 @@ def runningMed(n):
 	if (len(leftHeap) == len(rightHeap)):
 		return curMedian
 	elif (len(leftHeap) > len(rightHeap)):
+		if(len(leftHeap)>0):
 		#return (heapq.heappop(leftHeap) + curMedian)/2
-		return ((leftHeap[0] + curMedian)/2)
+			print "@@leftHeap [0]"
+			print leftHeap[0]
+		return ((leftHeap[0] + curMedian)/2.0)
 	else:
-		return ((rightHeap[0] + curMedian)/2)
+		if(len(rightHeap)>0):
+		#return (heapq.heappop(leftHeap) + curMedian)/2
+			print "@@rightHeap [0]"
+			print rightHeap[0]
+		return ((rightHeap[0] + curMedian)/2.0)
 		#return (heapq.heappop(rightHeap) + curMedian)/2
 	# the real one be like, if eqal length return med
 	#else return average of media and the longer one
@@ -149,7 +156,7 @@ if __name__ == "__main__":
 	outputFile = open('output.txt', 'w')
 
 	for line in inputFile:
-		num = int(line.rstrip('\n'))
+		num = float(line.rstrip('\n'))
 		med = runningMed(num)
 		outputFile.write(str(med) + '\n')
 
