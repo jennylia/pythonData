@@ -95,8 +95,14 @@ def runningMed(n):
 		print "curMedian is: " + str(curMedian)
 		if(n >= curMedian):
 			heapq.heappush(leftHeap, -curMedian)
-			curMedian = heapq.heappop(rightHeap)
-			heapq.heappush(rightHeap, n)
+
+			tryMedian = rightHeap[0]
+			if (tryMedian > n):
+				curMedian = n
+			else:
+				curMedian = heapq.heappop(rightHeap)
+				heapq.heappush(rightHeap, n) 
+
 		else:
 			heapq.heappush(leftHeap,-n)
 	elif (len(leftHeap) > len(rightHeap)):
@@ -109,7 +115,14 @@ def runningMed(n):
 			print leftHeap
 			print "$$$$$$$$$$$ Pay attention Right Heap"
 			print rightHeap
-			curMedian = n
+			#curMedian = -heapq.heappop(leftHeap)
+			#what is the current Median is still smaller
+			tryMedian = -leftHeap[0]
+			if (tryMedian < n):
+				curMedian = n
+			else:
+				curMedian = -heapq.heappop(leftHeap)
+				heapq.heappush(leftHeap, -n)
 			print "$$$$$$$$$$$ Pay attention CurMeidan"
 			print curMedian
             #curMedian = left[0]
@@ -122,8 +135,16 @@ def runningMed(n):
 		print "curMedian is: " + str(curMedian)
 		if (n > curMedian):
 			heapq.heappush(rightHeap, n)
+			print "$$$$$$$$$$$ Pay attention Left Heap"
+			print leftHeap
+			print "$$$$$$$$$$$ Pay attention Right Heap"
+			print rightHeap
 		else:
-			heapq.heappush(leftHeap,-n)
+			heapq.heappush(leftHeap, -n)
+			print "$$$$$$$$$$$ Pay attention Left Heap"
+			print leftHeap
+			print "$$$$$$$$$$$ Pay attention Right Heap"
+			print rightHeap
 
 	#TReturn the median:
 	#This logic is more suited for added
@@ -131,7 +152,7 @@ def runningMed(n):
 	print "*****RETURNING MEDIAN*****"
 	if (len(leftHeap) == len(rightHeap)):
 		print "===EQUAL LENGTH==="
-		print "curMedian: " + str(curMedian)
+		print "Returned Median: " + str(curMedian)
 		return curMedian
 	elif (len(leftHeap) > len(rightHeap)):
 		if(len(leftHeap)>0):
@@ -142,7 +163,7 @@ def runningMed(n):
 			print "@@leftHeap [0]"
 			print leftHeap[0]
 		print "===LEFT LONGER==="
-		print "curMedian: " + str(((-leftHeap[0] + curMedian)/2))
+		print "Returned Median: " + str(((-leftHeap[0] + curMedian)/2))
 	
 		return ((-leftHeap[0] + curMedian)/2)
 	else:
@@ -151,7 +172,7 @@ def runningMed(n):
 			print "@@rightHeap [0]"
 			print rightHeap[0]
 		print "===RIGHT LONGER==="
-		print "curMedian: " + str(((rightHeap[0] + curMedian)/2))
+		print "Returned Median: " + str(((rightHeap[0] + curMedian)/2))
 		return ((rightHeap[0] + curMedian)/2)
 		#return (heapq.heappop(rightHeap) + curMedian)/2
 	# the real one be like, if eqal length return med
