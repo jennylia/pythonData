@@ -7,7 +7,7 @@ import os
 import numpy
 import functools
 import heapq
-from heapq import heapify, heappush, heappop 
+from heapq import heapify, heappush, heappop, _heapify_max,_siftup_max
 
 
 """
@@ -65,7 +65,7 @@ curMedian = 0
 leftHeap = map(ReverseCompare, [])
 rightHeap = []
 heapq.heapify(rightHeap)
-heapq.heapify(leftHeap)
+heapq._heapify_max(leftHeap)
 
 def runningMed(n):
 	#importing the global variables
@@ -93,11 +93,12 @@ def runningMed(n):
 		print "curMedian is: " + str(curMedian)
 		if(n >= curMedian):
 			heapq.heappush(leftHeap, curMedian)
+            heapq._heapPy
 			curMedian = heapq.heappop(rightHeap)
             #curMedian = rightHeap[0]
 			heapq.heappush(rightHeap, n)
 		else:
-			heapq.heappush(leftHeap, n)
+			heapq._siftup_max(leftHeap, 0)
 
 	elif (len(leftHeap) > len(rightHeap)):
 		print "===LEFT LONGER==="
@@ -125,10 +126,18 @@ def runningMed(n):
 	if (len(leftHeap) == len(rightHeap)):
 		return curMedian
 	elif (len(leftHeap) > len(rightHeap)):
-		if(len(leftHeap)>0):
+		if(len(leftHeap)>4):
 		#return (heapq.heappop(leftHeap) + curMedian)/2
 			print "@@leftHeap [0]"
 			print leftHeap[0]
+			#print "@@pop a left, is it [0]?"
+			#print heapq.heappop(leftHeap)
+			#print "LET's Reheapify"
+			#heapq.heapify(leftHeap)
+			#print "@@leftHeap [0]"
+			#print leftHeap[0]
+			#print "@@pop a left, is it [0]?"
+			#print heapq.heappop(leftHeap)
 		return ((leftHeap[0] + curMedian)/2.0)
 	else:
 		if(len(rightHeap)>0):

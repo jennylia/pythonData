@@ -29,12 +29,7 @@ print heap
 # print heapq.heappop(heap) # prints z
 # print heapq.heappop(heap) # prints z
 z = [heapq.heappop(heap) for i in range (len (heap))]
-
+print z
 
 #This is for min heap
-x= [1,111,23232,423,345345,2,5,2,7,4]
-heapq.heapify(x)
-print x
-y = [heappop(x) for i in range (len (x))]
-print y
 
