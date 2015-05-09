@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 The important libraries to import
 """
@@ -77,20 +78,14 @@ def runningMed(n):
 		return curMedian
 
 	#the second +... time
-	# print "debug"
-	# print rightHeap
-	# print leftHeap
-	# heapq.heappush(leftHeap, 3)
-	# heapq.heappush(rightHeap, 3)
-	# print rightHeap
-
-	print "length of heaps"
-	print len(rightHeap)
-	print len(leftHeap)
-
-	if (len(rightHeap) > len(leftHeap) + 2):
-		print "Debug long right heap"
-
+	print "rightHeap length: " + str(len(rightHeap))
+	print "leftHeap: " + str(len(leftHeap))
+	print "rightHeap is: "
+	print rightHeap
+	print "leftHeap is: "
+	print leftHeap
+	if (len(rightHeap) > len(leftHeap) + 1):
+		print "RIGHT LONGER"
 		if(n >= curMedian):
 			heapq.heappush(leftHeap, curMedian)
 			curMedian = heapq.heappop(rightHeap)
@@ -99,8 +94,8 @@ def runningMed(n):
 		else:
 			heapq.heappush(leftHeap, n)
 
-	elif (len(leftHeap) > len(rightHeap) + 2):
-		print "Debug long"
+	elif (len(leftHeap) > len(rightHeap) + 1):
+		print "Left Longer"
 		if(n <= curMedian):
 			heapq.heappush(rightHeap, curMedian)
 			curMedian = heapq.heappop(leftHeap)
@@ -110,9 +105,9 @@ def runningMed(n):
 			heapq.heappush(rightHeap,n)
 
 	else:
-		print "Debug curMedian"
-		print n
-		print curMedian
+		print "EQUAL || < 1 Diff LENGTH"
+		print "n is: " + str(n)
+		print "curMedian is: " + str(curMedian)
 		if (n > curMedian):
 			heapq.heappush(rightHeap, n)
 		else:
